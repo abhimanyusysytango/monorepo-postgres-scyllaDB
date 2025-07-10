@@ -69,4 +69,14 @@ export class UsersController {
     const userId = req.user?.sub;
     return this.usersService.findById(userId);
   }
+
+  @Get('transactions')
+  @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Get all transactions for the authenticated user' })
+  @ApiResponse({ status: 200, description: 'List of user transactions' })
+  async getUserTransactions(@Req() req: any) {
+    const userId = req.user?.sub;
+    return this.usersService.getUserTransactions(userId);
+  }
 } 

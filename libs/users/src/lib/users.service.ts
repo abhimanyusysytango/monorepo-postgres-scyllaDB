@@ -57,4 +57,8 @@ export class UsersService {
     if (!user || user.is_active === false) throw new UnauthorizedException('Account is deactivated. Please contact admin.');
     return user;
   }
+
+  async getUserTransactions(userId: number) {
+    return this.usersRepo.getUserTransactions(userId);
+  }
 } 
