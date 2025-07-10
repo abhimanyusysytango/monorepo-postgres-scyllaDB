@@ -29,7 +29,13 @@
           "watchDepsName": "watch-deps"
         }
       },
-      "exclude": ["users/*", "libs/users/*", "libs/admin/*", "libs/shared/*"]
+      "exclude": [
+        "users/*",
+        "libs/users/*",
+        "libs/admin/*",
+        "libs/shared/*",
+        "libs/product/*"
+      ]
     },
     {
       "plugin": "@nx/webpack/plugin",
@@ -60,7 +66,13 @@
     },
     {
       "plugin": "@nx/js/typescript",
-      "include": ["users/*", "libs/users/*", "libs/admin/*", "libs/shared/*"],
+      "include": [
+        "users/*",
+        "libs/users/*",
+        "libs/admin/*",
+        "libs/shared/*",
+        "libs/product/*"
+      ],
       "options": {
         "typecheck": {
           "targetName": "typecheck"

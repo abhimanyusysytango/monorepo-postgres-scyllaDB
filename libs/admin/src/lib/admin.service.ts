@@ -2,14 +2,12 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AdminRepository } from './admin.repository';
 import * as CryptoJS from 'crypto-js';
 import { CommonJwtService } from '@demo-backend/common-jwt';
-import { PrismaService } from './prisma.service';
 
 @Injectable()
 export class AdminService {
   constructor(
     private readonly adminRepo: AdminRepository,
-    private readonly jwt: CommonJwtService,
-    private readonly prisma: PrismaService
+    private readonly jwt: CommonJwtService
   ) {}
 
   async login(username: string, password: string) {

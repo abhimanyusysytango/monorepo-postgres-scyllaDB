@@ -17,6 +17,9 @@
   "include": ["src/**/*.ts"],
   "references": [
     {
+      "path": "../product/tsconfig.lib.json"
+    },
+    {
       "path": "../common-jwt/tsconfig.lib.json"
     },
     {

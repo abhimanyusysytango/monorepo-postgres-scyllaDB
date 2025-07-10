@@ -4,16 +4,13 @@
   "include": [],
   "references": [
     {
-      "path": "../product"
-    },
-    {
-      "path": "../common-jwt"
-    },
-    {
       "path": "../shared"
     },
     {
       "path": "./tsconfig.lib.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
     }
   ]
 }

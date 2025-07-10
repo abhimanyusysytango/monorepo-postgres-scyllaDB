@@ -2,6 +2,7 @@ import { Injectable, BadRequestException, UnauthorizedException } from '@nestjs/
 import { UsersRepository } from './users.repository';
 import * as CryptoJS from 'crypto-js';
 import { CommonJwtService } from '@demo-backend/common-jwt';
+import { SignupUserDto, LoginUserDto, RefreshTokenDto } from './dto/users.dto';
 
 @Injectable()
 export class UsersService {
@@ -14,14 +15,16 @@ export class UsersService {
     return this.usersRepo.findAll();
   }
 
-  async signup(name: string, email: string, password: string) {
+  async signup(dto: SignupUserDto) {
+    const { name, email, password } = dto;
     const existing = await this.usersRepo.findByEmail(email);
     if (existing) throw new BadRequestException('Email already in use');
     const hashed = CryptoJS.SHA256(password).toString();
-    return this.usersRepo.createUser({ name, email, password: hashed });
+    return this.usersRepo.createUser({ name, email, password: hashed, balance: 1000.00 });
   }
 
-  async login(email: string, password: string) {
+  async login(dto: LoginUserDto) {
+    const { email, password } = dto;
     const user = await this.usersRepo.findByEmail(email);
     if (!user) throw new UnauthorizedException('Invalid credentials');
     if (user.is_active === false) throw new UnauthorizedException('Account is deactivated. Please contact admin.');
@@ -37,8 +40,9 @@ export class UsersService {
     };
   }
 
-  async refresh(refreshToken: string) {
-    const payload = this.jwt.verifyRefreshToken(refreshToken);
+  async refresh(dto: RefreshTokenDto) {
+    const { refresh_token } = dto;
+    const payload = this.jwt.verifyRefreshToken(refresh_token);
     return {
       access_token: this.jwt.signAccessToken({ sub: payload.sub, email: payload.email, role: payload.role })
     };

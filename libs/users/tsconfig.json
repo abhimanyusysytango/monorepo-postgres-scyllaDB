@@ -4,6 +4,9 @@
   "include": [],
   "references": [
     {
+      "path": "../product"
+    },
+    {
       "path": "../common-jwt"
     },
     {

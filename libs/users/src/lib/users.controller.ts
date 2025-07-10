@@ -25,7 +25,7 @@ export class UsersController {
   @ApiResponse({ status: 201, description: 'User created successfully' })
   @ApiResponse({ status: 400, description: 'Email already in use' })
   signup(@Body() body: SignupUserDto): Promise<any> {
-    return this.usersService.signup(body.name, body.email, body.password);
+    return this.usersService.signup(body);
   }
 
   @Post(UsersUri.LOGIN)
@@ -42,7 +42,7 @@ export class UsersController {
   @ApiResponse({ status: 200, description: 'Login successful' })
   @ApiResponse({ status: 401, description: 'Invalid credentials' })
   login(@Body() body: LoginUserDto): Promise<any> {
-    return this.usersService.login(body.email, body.password);
+    return this.usersService.login(body);
   }
 
   @Post(UsersUri.REFRESH)
@@ -57,7 +57,7 @@ export class UsersController {
   })
   @ApiResponse({ status: 200, description: 'New access token issued' })
   refresh(@Body() body: RefreshTokenDto): Promise<any> {
-    return this.usersService.refresh(body.refresh_token);
+    return this.usersService.refresh(body);
   }
 
   @Get(UsersUri.PROFILE)
