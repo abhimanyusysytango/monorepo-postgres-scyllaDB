@@ -13,4 +13,11 @@ export const UsersUri = {
   LOGIN: 'login',
   REFRESH: 'refresh/token',
   PROFILE: 'profile',
+};
+
+export const ProductUri = {
+  BASE: 'product',
+  CREATE: 'create/admin',
+  UPDATE: 'update/:id/admin',
+  LIST: 'list',
 }; 
