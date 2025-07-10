@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "../common-jwt"
+    },
+    {
+      "path": "../shared"
+    },
+    {
+      "path": "./tsconfig.lib.json"
+    }
+  ]
+}

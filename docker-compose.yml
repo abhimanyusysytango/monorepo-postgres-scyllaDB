@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - scylla
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
+      - SCYLLA_CONTACT_POINTS=scylla
+      - SCYLLA_KEYSPACE=mykeyspace
+
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  scylla:
+    image: scylladb/scylla:5.4
+    restart: always
+    ports:
+      - "9042:9042"
+    environment:
+      SCYLLA_CLUSTER_NAME: "demo"
+      SCYLLA_DC: "dc1"
+      SCYLLA_RACK: "rack1"
+    volumes:
+      - scylla_data:/var/lib/scylla
+
+volumes:
+  postgres_data:
+  scylla_data: 

@@ -1,10 +1,7 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -31,7 +28,8 @@
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
         }
-      }
+      },
+      "exclude": ["users/*", "libs/users/*", "libs/admin/*", "libs/shared/*"]
     },
     {
       "plugin": "@nx/webpack/plugin",
@@ -55,15 +53,24 @@
         "targetName": "test"
       },
       "exclude": [
-        "apps/demo-backend-e2e/**/*"
+        "apps/demo-backend-e2e/**/*",
+        "admin-app-e2e/**/*",
+        "users-app-e2e/**/*"
       ]
+    },
+    {
+      "plugin": "@nx/js/typescript",
+      "include": ["users/*", "libs/users/*", "libs/admin/*", "libs/shared/*"],
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        }
+      }
     }
   ],
   "targetDefaults": {
     "test": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     }
   }
 }

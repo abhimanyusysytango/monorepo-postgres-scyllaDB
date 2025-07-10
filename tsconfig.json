@@ -4,10 +4,28 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/demo-backend-e2e"
+      "path": "./libs/users"
     },
     {
-      "path": "./apps/demo-backend"
+      "path": "./libs/admin"
+    },
+    {
+      "path": "./users-app"
+    },
+    {
+      "path": "./users-app-e2e"
+    },
+    {
+      "path": "./admin-app-e2e"
+    },
+    {
+      "path": "./admin-app"
+    },
+    {
+      "path": "./libs/common-jwt"
+    },
+    {
+      "path": "./libs/shared"
     }
   ]
 }

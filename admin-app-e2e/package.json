@@ -1,0 +1,26 @@
+{
+  "name": "@demo-backend/admin-app-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@demo-backend/admin-app"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "admin-app-e2e/jest.config.ts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "@demo-backend/admin-app:build",
+          "@demo-backend/admin-app:serve"
+        ]
+      }
+    }
+  }
+}
